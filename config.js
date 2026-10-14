@@ -3,7 +3,7 @@
    de Project Settings → API Keys. NUNCA pongas service_role ni claves secretas aquí. */
 window.LEGUA_CONFIG = {
   SUPABASE_URL: "https://wjiyylyoyuhxzebmnvxf.supabase.co",
-  SUPABASE_ANON_KEY: "PEGA_AQUI_TU_PUBLISHABLE_O_ANON_KEY",
+  SUPABASE_ANON_KEY: "sb_publishable_RkrCbAYie8JgmgVwRZdGeQ_vePlKtDk",
   WHATSAPP_NUMBER: "51923883240"
 };
 window.leguaBackendReady = () => Boolean(
