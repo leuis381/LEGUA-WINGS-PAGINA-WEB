@@ -34,7 +34,7 @@ function renderProducts(){
     let opts = "";
     if(p.type === "wings"){
       opts += optionsHtml(sauces,"Sabor de alitas",1,`${p.id}-sauce`);
-      opts += `<label class="field">Tamaño de papa<select data-opt="${p.id}-potato"><option value="Regular">Regular (incluida)</option><option value="Grande">Grande (+S/3)</option></select></label>`;
+      opts += `<label class="field">Mejora de 1 papa<select data-opt="${p.id}-potato"><option value="Regular">Papas regulares (incluidas)</option><option value="Grande">Una papa grande (+S/3)</option></select></label>`;
       opts += optionsHtml(creams,"Crema 1",1,`${p.id}-cream1`);
       if(p.creamCount > 1) opts += optionsHtml(creams,"Crema 2",1,`${p.id}-cream2`);
       if(p.creamCount > 2) opts += optionsHtml(creams,"Crema 3",1,`${p.id}-cream3`);
@@ -88,12 +88,28 @@ function itemDiscount(item){
   // La promo 2x1 se calcula por unidades del mismo producto; se descuenta la unidad de menor precio.
   return Math.floor(item.qty/2)*item.unit;
 }
-function cartDiscount(){return cart.reduce((sum,item)=>sum+itemDiscount(item),0)}
+function cartDiscount(){
+  if(!isPromoSaturday()) return 0;
+  const eligible = new Set(["salchikids","salchipapa","salchiwings"]);
+  const unitPricesByProduct = new Map();
+  for(const item of cart){
+    if(!eligible.has(item.id)) continue;
+    if(!unitPricesByProduct.has(item.id)) unitPricesByProduct.set(item.id,[]);
+    const prices = unitPricesByProduct.get(item.id);
+    for(let i=0;i<item.qty;i++) prices.push(item.unit);
+  }
+  let discount = 0;
+  for(const prices of unitPricesByProduct.values()){
+    prices.sort((a,b)=>a-b);
+    discount += prices.slice(0,Math.floor(prices.length/2)).reduce((sum,price)=>sum+price,0);
+  }
+  return Number(discount.toFixed(2));
+}
 function cartTotal(){return Math.max(0,cart.reduce((sum,item)=>sum+item.qty*item.unit,0)-cartDiscount())}
 function configText(item){
  const c=item.config, bits=[];
  if(c.sauce)bits.push(`Sabor: ${c.sauce}`);
- if(c.potato)bits.push(`Papa: ${c.potato}${c.potato==="Grande"?" (+S/3)":""}`);
+ if(c.potato)bits.push(c.potato==="Grande"?"Mejora: 1 papa grande (+S/3)":"Papas regulares");
  if(c.creams?.length)bits.push(`Cremas: ${c.creams.join(", ")}`);
  if(c.extra)bits.push(`Extra: ${c.extra.name} (+${money(c.extra.price)})`);
  return bits.join(" · ");
@@ -137,11 +153,11 @@ async function checkout(){
      console.error("No se pudo guardar el pedido en la base de datos:", err);
      error.textContent = "No se pudo registrar el pedido en cocina. Puedes continuar por WhatsApp, pero el local no lo verá en el panel hasta corregir la conexión. Reintenta o escríbenos.";
      const proceed = window.confirm("No se pudo guardar el pedido en el sistema de cocina. ¿Quieres abrir WhatsApp de todas formas? El pedido NO aparecerá en el panel de cocina.");
-     if(!proceed) return;
+     if(!proceed) { if(waWindow) waWindow.close(); return; }
    }
  } else {
    const proceed = window.confirm("La base de datos aún no está configurada. El pedido NO llegará al panel de cocina. ¿Quieres abrir WhatsApp de todas formas?");
-   if(!proceed) return;
+   if(!proceed) { if(waWindow) waWindow.close(); return; }
  }
  const message=`¡Hola, Legua Wings! Quiero hacer este pedido.\nCódigo: ${orderNumber}${saved?" (registrado en el sistema)":" (pendiente de registro en sistema)"}\n\n${lines}\n\nTotal estimado: ${money(cartTotal())}\nNombre: ${name}${phone?`\nCelular: ${phone}`:""}\nEntrega: ${type}${type==="Delivery"?`\nDirección: ${address}`:""}${notes?`\nIndicaciones: ${notes}`:""}\n\nPor favor, confirmen disponibilidad, precio final y tiempo estimado.`;
  if(waWindow) waWindow.location.href = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
