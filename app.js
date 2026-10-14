@@ -157,7 +157,7 @@ async function checkout(){
    }
  } else {
    const proceed = window.confirm("La base de datos aún no está configurada. El pedido NO llegará al panel de cocina. ¿Quieres abrir WhatsApp de todas formas?");
-   if(!proceed) return;
+   if(!proceed) { if(waWindow) waWindow.close(); return; }
  }
  const message=`¡Hola, Legua Wings! Quiero hacer este pedido.\nCódigo: ${orderNumber}${saved?" (registrado en el sistema)":" (pendiente de registro en sistema)"}\n\n${lines}\n\nTotal estimado: ${money(cartTotal())}\nNombre: ${name}${phone?`\nCelular: ${phone}`:""}\nEntrega: ${type}${type==="Delivery"?`\nDirección: ${address}`:""}${notes?`\nIndicaciones: ${notes}`:""}\n\nPor favor, confirmen disponibilidad, precio final y tiempo estimado.`;
  if(waWindow) waWindow.location.href = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
