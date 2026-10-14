@@ -1,5 +1,0 @@
-INDEX VERSION 1.134+C:\Users\USER\Desktop\PROYECTO_GRUPAL_LEGUA_WINGS\.metadata\.plugins\org.eclipse.jdt.core
-2758973429.index
-1097058181.index
-2275411108.index
-1865797976.index
