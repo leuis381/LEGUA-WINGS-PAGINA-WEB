@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#d95b12">
+  <meta name="description" content="Pide alitas, combos, salchipapas y bites de Legua Wings. Las mejores alitas de Carmen de la Legua.">
+  <title>Legua Wings | Alitas, combos y salchis</title>
+  <link rel="icon" href="assets/logo-legua-wings.png">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="topline"><span>LAS MEJORES ALITAS</span><span>DE CARMEN DE LA LEGUA</span></div>
+  <header class="site-header">
+    <a class="brand" href="#inicio" aria-label="Legua Wings inicio"><img src="assets/logo-legua-wings.png" alt="Logo Legua Wings"><span class="brand-copy">LEGUA <b>WINGS</b></span></a>
+    <nav aria-label="Navegación principal">
+      <a href="#carta">La carta</a><a href="#promos">Promociones</a><a href="#sabores">Sabores</a><a href="#contacto">Contacto</a><a href="staff.html">Personal</a>
+    </nav>
+    <button class="cart-button" id="openCart" aria-label="Abrir carrito">Mi pedido <span id="cartCount">0</span></button>
+  </header>
+  <main id="inicio">
+    <section class="hero">
+      <img class="hero-bg" src="assets/portada-legua-wings.png" alt="" aria-hidden="true">
+      <div class="hero-shade"></div>
+      <div class="hero-content">
+        <p class="eyebrow">CRUJIENTES POR FUERA. INOLVIDABLES POR DENTRO.</p>
+        <h1>Hoy se come<br><span>con ganas.</span></h1>
+        <p>Alitas, combos y salchis con ese sabor que provoca volver.</p>
+        <div class="hero-actions"><a class="btn btn-primary" href="#carta">Ver la carta <span>↘</span></a><a class="btn btn-outline" href="#promos">Ver promociones</a></div>
+        <div class="hero-note"><span class="dot"></span> Pedidos por WhatsApp · Delivery sujeto a cobertura</div>
+      </div>
+      <div class="hero-stamp">SABOR<br><b>LEGUA</b><br>WINGS</div>
+    </section>
+    <section class="promo-strip" id="promos">
+      <div><span class="promo-kicker">SÁBADOS</span><h2>2×1 en salchis*</h2><p>Salchikids, salchipapa y salchiwings.</p></div>
+      <div class="promo-divider"></div>
+      <div><span class="promo-kicker">CLIENTES FRECUENTES</span><h2>5 compras = 50% OFF*</h2><p>En tu próximo combo, según condiciones de la promoción.</p></div>
+      <p class="promo-footnote">*Promociones sujetas a condiciones y validación del local. Confirma disponibilidad al hacer tu pedido.</p>
+    </section>
+    <section class="section menu-section" id="carta">
+      <div class="section-heading"><div><p class="eyebrow">ELIGE TU ANTOJO</p><h2>La carta <span>Legua</span></h2></div><p>Arma tu pedido, revisa el total y envíalo por WhatsApp.</p></div>
+      <div class="menu-tabs" role="tablist" aria-label="Categorías de carta">
+        <button class="tab active" data-category="combos">Combos de alitas</button><button class="tab" data-category="salchis">Salchis & bites</button>
+      </div>
+      <div id="productGrid" class="product-grid"></div>
+    </section>
+    <section class="flavors-section" id="sabores">
+      <div class="section-heading"><div><p class="eyebrow">EL TOQUE FINAL</p><h2>Elige tu <span>sabor</span></h2></div><p>Selecciona una salsa para cada combo de alitas. En salchis y bites puedes elegir cremas.</p></div>
+      <div class="flavor-grid">
+        <article class="flavor-card"><span class="flavor-number">01</span><h3>BBQ</h3><p>Dulce, intensa y especiada, a base de tomate y especias.</p></article>
+        <article class="flavor-card"><span class="flavor-number">02</span><h3>BBQ picante</h3><p>Nuestra BBQ con un toque de salsa brava.</p></article>
+        <article class="flavor-card"><span class="flavor-number">03</span><h3>Brava</h3><p>Picante, con ají limo, ají amarillo, rocoto y limón.</p></article>
+        <article class="flavor-card"><span class="flavor-number">04</span><h3>Acevichada</h3><p>Sabor inspirado en el ceviche, con cebolla china por encima.</p></article>
+        <article class="flavor-card special"><span class="flavor-number">05</span><h3>Broaster extra crocante</h3><p>Nuestra especialidad: alita más grande, súper crocante y llena de sabor.</p></article>
+        <article class="flavor-card special"><span class="flavor-number">06</span><h3>Lemon pepper</h3><p>Alitas con limón, pimienta y sal, súper crocantes.</p></article>
+      </div>
+      <div class="creams-line"><span>CREMAS DISPONIBLES</span><p>Mayonesa vinagreta <i>•</i> Ají de la casa <i>•</i> Chimichurri <i>•</i> Mostaza <i>•</i> Ketchup</p></div>
+    </section>
+    <section class="menu-images section">
+      <div class="section-heading"><div><p class="eyebrow">TAMBIÉN PUEDES VERLA</p><h2>La carta <span>impresa</span></h2></div><p>Consulta los diseños de la carta. Los precios se muestran también en el menú interactivo.</p></div>
+      <div class="menu-image-grid"><a href="assets/carta-combos.png" target="_blank" rel="noopener"><img src="assets/carta-combos.png" alt="Carta de combos de alitas"><span>Ver carta de combos ↗</span></a><a href="assets/carta-salchis.png" target="_blank" rel="noopener"><img src="assets/carta-salchis.png" alt="Carta de salchis y bites"><span>Ver carta de salchis & bites ↗</span></a></div>
+    </section>
+    <section class="contact-section" id="contacto">
+      <div><p class="eyebrow">¿SE TE ANTOJÓ?</p><h2>Tu próximo antojo<br><span>está a un mensaje.</span></h2><p>Haz tu pedido desde la web y confírmalo directamente con nosotros.</p></div>
+      <div class="contact-card"><span class="contact-label">WHATSAPP DE PEDIDOS</span><strong>923 883 240</strong><p>Delivery gratis anunciado en la carta. Confirma cobertura y condiciones al pedir.</p><button class="btn btn-primary" id="contactWhatsApp">Escribir por WhatsApp ↗</button><small>Horario y disponibilidad se confirman por WhatsApp.</small></div>
+    </section>
+  </main>
+  <footer><a class="footer-brand" href="#inicio">LEGUA <b>WINGS</b></a><span>Para todo momento.</span><span>© <span id="year"></span> Legua Wings</span></footer>
+
+  <div class="cart-backdrop" id="cartBackdrop"></div>
+  <aside class="cart-drawer" id="cartDrawer" aria-label="Tu pedido" aria-hidden="true">
+    <div class="cart-head"><div><p class="eyebrow">CASI LISTO</p><h2>Tu pedido</h2></div><button class="icon-button" id="closeCart" aria-label="Cerrar carrito">✕</button></div>
+    <div id="cartItems" class="cart-items"><div class="empty-cart"><span>✳</span><h3>Tu carrito está esperando</h3><p>Agrega algo rico de la carta.</p></div></div>
+    <div class="cart-form">
+      <label for="customerName">Tu nombre</label><input id="customerName" placeholder="¿Cómo te llamas?" maxlength="70">
+      <label for="orderType">¿Cómo lo recibes?</label><select id="orderType"><option value="Delivery">Delivery</option><option value="Recojo en local">Recojo en local</option></select>
+      <label for="customerAddress">Dirección o referencia <span>(para delivery)</span></label><input id="customerAddress" placeholder="Calle, número, referencia">
+      <label for="customerPhone">Celular de contacto</label><input id="customerPhone" inputmode="tel" placeholder="Tu número de celular" maxlength="20">
+      <label for="orderNotes">Indicaciones (opcional)</label><textarea id="orderNotes" rows="2" placeholder="Ej. sin cebolla china, llamar al llegar"></textarea>
+      <div class="cart-total"><span>Total estimado</span><strong id="cartTotal">S/0.00</strong></div>
+      <p class="cart-disclaimer">Al enviar, guardaremos el pedido para que cocina lo vea si el sistema está configurado. También abriremos WhatsApp para confirmar. El total es estimado.</p><p id="backendNotice" class="cart-disclaimer" role="status"></p>
+      <button class="btn btn-primary checkout" id="checkout">Enviar pedido por WhatsApp ↗</button>
+      <p id="formError" class="form-error" role="alert"></p>
+    </div>
+  </aside>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="config.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
