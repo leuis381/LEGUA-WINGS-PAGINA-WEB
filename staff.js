@@ -35,15 +35,22 @@ async function login(e) {
     setLoginMessage("Supabase no está configurado. Revisa config.js.");
     return;
   }
-  const { error } = await db.auth.signInWithPassword({
-    email: $("#staffEmail").value.trim(),
-    password: $("#staffPassword").value
-  });
-  if (error) {
-    setLoginMessage("No se pudo iniciar sesión. Revisa el correo y contraseña.");
-    return;
+  try {
+    const { error } = await db.auth.signInWithPassword({
+      email: $("#staffEmail").value.trim(),
+      password: $("#staffPassword").value
+    });
+    if (error) {
+      // Supabase returns a diagnostic message (e.g. invalid credentials or unconfirmed email).
+      // Use textContent through setLoginMessage so it is displayed safely, not interpreted as HTML.
+      setLoginMessage("Supabase: " + error.message);
+      return;
+    }
+    await showDashboard();
+  } catch (error) {
+    console.error("Falló la petición de inicio de sesión:", error);
+    setLoginMessage("No se pudo contactar con Supabase. Revisa la conexión a internet y vuelve a intentarlo.");
   }
-  await showDashboard();
 }
 
 async function showDashboard() {
